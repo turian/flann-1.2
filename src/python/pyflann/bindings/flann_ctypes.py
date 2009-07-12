@@ -348,10 +348,10 @@ class FLANN:
 
     def set_distance_type(self, distance_type, order = 0):
         """
-        Sets the distance type used. Possible values: euclidean, manhattan, minkowski.
+        Sets the distance type used. Possible values: euclidean, manhattan, minkowski, dot.
         """
         
-        distance_translation = { "euclidean" : 1, "manhattan" : 2, "minkowski" : 3}
+        distance_translation = { "euclidean" : 1, "manhattan" : 2, "minkowski" : 3, "dot": 4}
         flann.flann_set_distance_type(distance_translation[distance_type],order)
 
 

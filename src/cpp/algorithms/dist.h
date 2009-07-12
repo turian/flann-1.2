@@ -149,6 +149,41 @@ double minkowski_dist(Iterator1 first1, Iterator1 last1, Iterator2 first2, doubl
 
 
 
+/**
+ *  Compute the dot distance between two vectors.
+ *
+ *	This is highly optimised, with loop unrolling, as it is one
+ *	of the most expensive inner loops.
+ */
+template <typename Iterator1, typename Iterator2>
+double dot_dist(Iterator1 first1, Iterator1 last1, Iterator2 first2, double acc = 0)
+{
+	double dist = acc;
+	double dot0, dot1, dot2, dot3;
+	Iterator1 lastgroup = last1 - 3;
+
+    # Add one to the distance because we substract the dot product.
+    dist += 1;
+
+	/* Process 4 items with each loop for efficiency. */
+	while (first1 < lastgroup) {
+		dot0 = first1[0] * first2[0];
+		dot1 = first1[1] * first2[1];
+		dot2 = first1[2] * first2[2];
+		dot3 = first1[3] * first2[3];
+		dist -= (dot0 + dot1 + dot2 + dot3);
+		first1 += 4;
+		first2 += 4;
+	}
+	/* Process last 0-3 pixels.  Not needed for standard vector lengths. */
+	while (first1 < last1) {
+		dot0 = *first1++ * *first2++;
+		dist -= dot0;
+	}
+	return dist;
+}
+
+
 
 extern flann_distance_t flann_distance_type;
 /**
@@ -168,6 +203,8 @@ double custom_dist(Iterator1 first1, Iterator1 last1, Iterator2 first2, double a
 		return manhattan_dist(first1, last1, first2, acc);
 	case MINKOWSKI:
 		return minkowski_dist(first1, last1, first2, acc);
+	case DOT:
+		return dot_dist(first1, last1, first2, acc);
 	default:
 		return euclidean_dist(first1, last1, first2, acc);
 	}
