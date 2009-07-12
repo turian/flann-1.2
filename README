@@ -6,7 +6,9 @@ See the doc/manual.pdf file for information on how to use the library.
 
 ================
 
-From Joseph Turian:
+Forked by Joseph Turian:
+http://github.com/turian/flann/
+
 
 I have forked flann-1.2 from
 http://www.cs.ubc.ca/~mariusm/index.php/FLANN/FLANN
@@ -14,8 +16,72 @@ in order to make the following changes:
 
 * Added a DOT distance measure.
   This is 1-dot(x,y).
+  WARNING: This might not work. See email exchange at end of README.
   WARNING: I don't know if this will break FLANN if your dot-product is
   outside the range of [0,1], but mine never are because I pre-normalize.
   You could alternately implement the normalization as the cosine
   similarity (http://en.wikipedia.org/wiki/Cosine_similarity), but I
   don't do that since it would make the inner loop less efficient.
+
+I also keep track of a list of issues:
+    http://github.com/turian/flann/issues
+
+================
+
+
+
+> Marius:
+>  A small detail you have to be careful about is how the kd-tree uses this
+> distance function. Because the kd-trees are construced one dimension at a
+> time they keep track of a partial distance to which they accumulate
+> distances across each dimension. So the following two pieces of code must
+> compute the same thing:
+>
+> double d = dist(a,a+10,b);
+> ------------
+> double tmp = dist(a,a+1,b);
+> double d = dist(a+1,a+10,b+1,tmp);
+
+Joseph:
+Okay, I need your help with something simple:
+
+I want to convert the dot similarity into a distance.
+
+1) If I negate the similarity, is this acceptable? Or will negative
+distance screw up FLANN?
+
+2_ Because I have normalized my inputs, the dot product will always be
+in the range [0, 1].
+So I could implement the dot *distance* as:
+  1 - dot(x, y).
+If I do this, though, I am not sure what I should do about the term 1.
+Should I add it every time, or only when acc is nonzero, or what?
+I include my source code:
+
+double dot_dist(Iterator1 first1, Iterator1 last1, Iterator2 first2,
+double acc = 0)
+{
+       double dist = acc;
+       double dot0, dot1, dot2, dot3;
+       Iterator1 lastgroup = last1 - 3;
+
+   /* Add one to the distance because we substract the dot product. */
+   dist += 1;
+
+       /* Process 4 items with each loop for efficiency. */
+       while (first1 < lastgroup) {
+               dot0 = first1[0] * first2[0];
+               dot1 = first1[1] * first2[1];
+               dot2 = first1[2] * first2[2];
+               dot3 = first1[3] * first2[3];
+               dist -= (dot0 + dot1 + dot2 + dot3);
+               first1 += 4;
+               first2 += 4;
+       }
+       /* Process last 0-3 pixels.  Not needed for standard vector lengths. */
+       while (first1 < last1) {
+               dot0 = *first1++ * *first2++;
+               dist -= dot0;
+       }
+       return dist;
+}

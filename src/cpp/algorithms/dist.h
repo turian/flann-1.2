@@ -162,7 +162,7 @@ double dot_dist(Iterator1 first1, Iterator1 last1, Iterator2 first2, double acc 
 	double dot0, dot1, dot2, dot3;
 	Iterator1 lastgroup = last1 - 3;
 
-    # Add one to the distance because we substract the dot product.
+    /* Add one to the distance because we substract the dot product. */
     dist += 1;
 
 	/* Process 4 items with each loop for efficiency. */

@@ -56,8 +56,8 @@ enum flann_log_level_t {
 enum flann_distance_t {
 	EUCLIDEAN = 1,
 	MANHATTAN = 2,
-	MINKOWSKI = 3
-	DOT = 4,
+	MINKOWSKI = 3,
+	DOT = 4
 };
 
 #endif  // CONSTANTS_H
