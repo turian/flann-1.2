@@ -1,0 +1,323 @@
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<title>mariusmuja@gmail.com/gmail.3C7A60CB</title>
+</head>
+<body>
+<h1>Conversation with mariusmuja@gmail.com/gmail.3C7A60CB</h1>
+<span style='font-weight: normal;'><font color="#204a87"><font size="2">(15:43:09) </font></font></span><span style='font-weight: bold;color: #204a87;'><font size="3">turian@gmail.com/Home360F0002: </font></span><font size="3">Marius, do you have a moment to chat about distance measures in FLANN?</font><br>
+<span style='font-weight: normal;'><font color="#204a87"><font size="2">(15:43:14) </font></font></span><span style='font-weight: bold;color: #204a87;'><font size="3">turian@gmail.com/Home360F0002: </font></span><font size="3">I wanted to tell you about what I tried</font><br>
+<span style='font-weight: normal;'><font size="2"><font color="#cc0000">(15:45:56) </font></font></span><span style='font-weight: bold;color: #cc0000;'><font size="3">Marius Muja: </font></span><font size="3">Hi Joseph, actually I was just about to reply to your emails</font><br>
+<span style='font-weight: normal;'><font size="2"><font color="#cc0000">(15:46:01) </font></font></span><span style='font-weight: bold;color: #cc0000;'><font size="3">Marius Muja: </font></span><font size="3">I was away yesterday</font><br>
+<span style='font-weight: normal;'><font color="#204a87"><font size="2">(15:46:22) </font></font></span><span style='font-weight: bold;color: #204a87;'><font size="3">turian@gmail.com/Home360F0002: </font></span><font size="3">sure :)</font><br>
+<span style='font-weight: normal;'><font size="2"><font color="#cc0000">(15:48:56) </font></font></span><span style='font-weight: bold;color: #cc0000;'><font size="3">Marius Muja: </font></span><font size="3">I'm double checking in the code right now, but I think the only assumption FLANN does is that the distance is increasing as the features as more distant to one another</font><br>
+<span style='font-weight: normal;'><font size="2"><font color="#cc0000">(15:49:46) </font></font></span><span style='font-weight: bold;color: #cc0000;'><font size="3">Marius Muja: </font></span><font size="3">hmmm, actually that's not true</font><br>
+<span style='font-weight: normal;'><font size="2"><font color="#cc0000">(15:49:58) </font></font></span><span style='font-weight: bold;color: #cc0000;'><font size="3">Marius Muja: </font></span><font size="3">it also has to be positive</font><br>
+<span style='font-weight: normal;'><font color="#204a87"><font size="2">(15:50:55) </font></font></span><span style='font-weight: bold;color: #204a87;'><font size="3">turian@gmail.com/Home360F0002: </font></span><font size="3">Iyeeah</font><br>
+<span style='font-weight: normal;'><font color="#204a87"><font size="2">(15:51:04) </font></font></span><span style='font-weight: bold;color: #204a87;'><font size="3">turian@gmail.com/Home360F0002: </font></span><font size="3">basically I tried it all three ways I proposed</font><br>
+<span style='font-weight: normal;'><font color="#204a87"><font size="2">(15:51:10) </font></font></span><span style='font-weight: bold;color: #204a87;'><font size="3">turian@gmail.com/Home360F0002: </font></span><font size="3">and it seemed to fail on all three</font><br>
+<span style='font-weight: normal;'><font size="2"><font color="#cc0000">(15:56:48) </font></font></span><span style='font-weight: bold;color: #cc0000;'><font size="3">Marius Muja: </font></span><font size="3">yes, the kdtree algorithm constructs a partial distance to the nearest domain using part of teh dimensions</font><br>
+<span style='font-weight: normal;'><font size="2"><font color="#cc0000">(15:57:06) </font></font></span><span style='font-weight: bold;color: #cc0000;'><font size="3">Marius Muja: </font></span><font size="3">but also assumes that as you add more dimensions this distance will increase</font><br>
+<span style='font-weight: normal;'><font size="2"><font color="#cc0000">(15:57:16) </font></font></span><span style='font-weight: bold;color: #cc0000;'><font size="3">Marius Muja: </font></span><font size="3">which is not the case of the dot product</font><br>
+<span style='font-weight: normal;'><font size="2"><font color="#cc0000">(15:58:18) </font></font></span><span style='font-weight: bold;color: #cc0000;'><font size="3">Marius Muja: </font></span><font size="3">I would have to rewrite some of that code in a more general way for it to work with the dot product distance</font><br>
+<span style='font-weight: normal;'><font color="#204a87"><font size="2">(16:03:05) </font></font></span><span style='font-weight: bold;color: #204a87;'><font size="3">turian@gmail.com/Home360F0002: </font></span><font size="3">ah yeah</font><br>
+<span style='font-weight: normal;'><font color="#204a87"><font size="2">(16:03:14) </font></font></span><span style='font-weight: bold;color: #204a87;'><font size="3">turian@gmail.com/Home360F0002: </font></span><font size="3">with dot distance in fact its the oppositre</font><br>
+<span style='font-weight: normal;'><font color="#204a87"><font size="2">(16:03:39) </font></font></span><span style='font-weight: bold;color: #204a87;'><font size="3">turian@gmail.com/Home360F0002: </font></span><font size="3">Distance is non-increasingas you add more dimensions</font><br>
+<span style='font-weight: normal;'><font size="2"><font color="#cc0000">(16:03:58) </font></font></span><span style='font-weight: bold;color: #cc0000;'><font size="3">Marius Muja: </font></span><font size="3">yes</font><br>
+<span style='font-weight: normal;'><font color="#204a87"><font size="2">(16:04:43) </font></font></span><span style='font-weight: bold;color: #204a87;'><font size="3">turian@gmail.com/Home360F0002: </font></span><font size="3">Could you look into this for me?</font><br>
+<span style='font-weight: normal;'><font color="#204a87"><font size="2">(16:05:07) </font></font></span><span style='font-weight: bold;color: #204a87;'><font size="3">turian@gmail.com/Home360F0002: </font></span><font size="3">And figure out if it's a half day change or more like a one week change?</font><br>
+<span style='font-weight: normal;'><font color="#204a87"><font size="2">(16:05:16) </font></font></span><span style='font-weight: bold;color: #204a87;'><font size="3">turian@gmail.com/Home360F0002: </font></span><font size="3">I would *greatly* appreciate it :)</font><br>
+<span style='font-weight: normal;'><font size="2"><font color="#cc0000">(16:06:36) </font></font></span><span style='font-weight: bold;color: #cc0000;'><font size="3">Marius Muja: </font></span><font size="3">I can't promise I'll have time to do this soon, I'm actually doing an internship this summer, so I'm not at UBC</font><br>
+<span style='font-weight: normal;'><font size="2"><font color="#cc0000">(16:08:14) </font></font></span><span style='font-weight: bold;color: #cc0000;'><font size="3">Marius Muja: </font></span><font size="3">it can be done quickly if it were to be hacked, I'd like to eventually do it nicely (define a distance class with a custom &lt; operator)</font><br>
+<span style='font-weight: normal;'><font color="#204a87"><font size="2">(16:12:27) </font></font></span><span style='font-weight: bold;color: #204a87;'><font size="3">turian@gmail.com/Home360F0002: </font></span><font size="3">Can you please please send me the hacked version?</font><br>
+<span style='font-weight: normal;'><font size="2"><font color="#cc0000">(16:23:38) </font></font></span><span style='font-weight: bold;color: #cc0000;'><font size="3">Marius Muja: </font></span><font size="3">do you remember what failed in the case of using -dot(x,y) as teh distance</font><br>
+<span style='font-weight: normal;'><font size="2"><font color="#cc0000">(16:23:46) </font></font></span><span style='font-weight: bold;color: #cc0000;'><font size="3">Marius Muja: </font></span><font size="3">?</font><br>
+<span style='font-weight: normal;'><font color="#204a87"><font size="2">(16:23:50) </font></font></span><span style='font-weight: bold;color: #204a87;'><font size="3">turian@gmail.com/Home360F0002: </font></span><font size="3">IIRC</font><br>
+<span style='font-weight: normal;'><font color="#204a87"><font size="2">(16:23:55) </font></font></span><span style='font-weight: bold;color: #204a87;'><font size="3">turian@gmail.com/Home360F0002: </font></span><font size="3">what happened in all three cases</font><br>
+<span style='font-weight: normal;'><font color="#204a87"><font size="2">(16:24:03) </font></font></span><span style='font-weight: bold;color: #204a87;'><font size="3">turian@gmail.com/Home360F0002: </font></span><font size="3">was then when I did the automatic hyperparameter tuning</font><br>
+<span style='font-weight: normal;'><font color="#204a87"><font size="2">(16:24:07) </font></font></span><span style='font-weight: bold;color: #204a87;'><font size="3">turian@gmail.com/Home360F0002: </font></span><font size="3">once it got to KD trees</font><br>
+<span style='font-weight: normal;'><font color="#204a87"><font size="2">(16:24:19) </font></font></span><span style='font-weight: bold;color: #204a87;'><font size="3">turian@gmail.com/Home360F0002: </font></span><font size="3">it started being unable to achieve better than like 0.3% accuracy</font><br>
+<span style='font-weight: normal;'><font color="#204a87"><font size="2">(16:24:22) </font></font></span><span style='font-weight: bold;color: #204a87;'><font size="3">turian@gmail.com/Home360F0002: </font></span><font size="3">and went into an infinite loop</font><br>
+<span style='font-weight: normal;'><font color="#204a87"><font size="2">(16:24:26) </font></font></span><span style='font-weight: bold;color: #204a87;'><font size="3">turian@gmail.com/Home360F0002: </font></span><font size="3">I'll try it again for you</font><br>
+<span style='font-weight: normal;'><font size="2"><font color="#cc0000">(16:24:36) </font></font></span><span style='font-weight: bold;color: #cc0000;'><font size="3">Marius Muja: </font></span><font size="3">ok</font><br>
+<span style='font-weight: normal;'><font size="2"><font color="#cc0000">(16:26:17) </font></font></span><span style='font-weight: bold;color: #cc0000;'><font size="3">Marius Muja: </font></span><font size="3">I'm pretty busy with other stuff wight now, so I don't have time to work on this</font><br>
+<span style='font-weight: normal;'><font size="2"><font color="#cc0000">(16:26:45) </font></font></span><span style='font-weight: bold;color: #cc0000;'><font size="3">Marius Muja: </font></span><font size="3">I can point you to the places you would need to change if you want to do this wight now</font><br>
+<span style='font-weight: normal;'><font size="2"><font color="#cc0000">(16:26:52) </font></font></span><span style='font-weight: bold;color: #cc0000;'><font size="3">Marius Muja: </font></span><font size="3">right* now</font><br>
+<span style='font-weight: normal;'><font color="#204a87"><font size="2">(16:27:06) </font></font></span><span style='font-weight: bold;color: #204a87;'><font size="3">turian@gmail.com/Home360F0002: </font></span><font size="3">Great</font><br>
+<span style='font-weight: normal;'><font color="#204a87"><font size="2">(16:27:07) </font></font></span><span style='font-weight: bold;color: #204a87;'><font size="3">turian@gmail.com/Home360F0002: </font></span><font size="3">Please do</font><br>
+<span style='font-weight: normal;'><font size="2">(16:27:15) </font></span><b><font size="3">Logging started. Future messages in this conversation will be logged.</font></b><br>
+<span style='font-weight: normal;'><font size="2"><font color="#cc0000">(16:27:32) </font></font></span><span style='font-weight: bold;color: #cc0000;'><font size="3">Marius Muja: </font></span><font size="3">the main two files are cpp/algorithms/KDTree.h</font><br>
+<span style='font-weight: normal;'><font size="2"><font color="#cc0000">(16:27:45) </font></font></span><span style='font-weight: bold;color: #cc0000;'><font size="3">Marius Muja: </font></span><font size="3">and cpp/algorithms/KMeansTree.h</font><br>
+<span style='font-weight: normal;'><font color="#204a87"><font size="2">(16:28:07) </font></font></span><span style='font-weight: bold;color: #204a87;'><font size="3">turian@gmail.com/Home360F0002: </font></span><font size="3">okay</font><br>
+<span style='font-weight: normal;'><font size="2"><font color="#cc0000">(16:29:21) </font></font></span><span style='font-weight: bold;color: #cc0000;'><font size="3">Marius Muja: </font></span><font size="3">in teh KDTree the function searchLevel is called with a parameter mindistsq (the name remained since I had only squared euclidian distance)</font><br>
+<span style='font-weight: normal;'><font size="2"><font color="#cc0000">(16:29:47) </font></font></span><span style='font-weight: bold;color: #cc0000;'><font size="3">Marius Muja: </font></span><font size="3">it starts with 0 and adds teh partial distance contributed by each dimension</font><br>
+<span style='font-weight: normal;'><font size="2"><font color="#cc0000">(16:30:36) </font></font></span><span style='font-weight: bold;color: #cc0000;'><font size="3">Marius Muja: </font></span><font size="3">when mindistsq is larger than the nearest neighbors found so far it gives up on exploring those domains</font><br>
+<span style='font-weight: normal;'><font size="2"><font color="#cc0000">(16:31:10) </font></font></span><span style='font-weight: bold;color: #cc0000;'><font size="3">Marius Muja: </font></span><font size="3">with the dot product (which is decreasing), that will happen right away and it doen't explore anything</font><br>
+<span style='font-weight: normal;'><font color="#204a87"><font size="2">(16:32:34) </font></font></span><span style='font-weight: bold;color: #204a87;'><font size="3">turian@gmail.com/Home360F0002: </font></span><font size="3">okay</font><br>
+<span style='font-weight: normal;'><font color="#204a87"><font size="2">(16:32:54) </font></font></span><span style='font-weight: bold;color: #204a87;'><font size="3">turian@gmail.com/Home360F0002: </font></span><font size="3">        if (new_distsq &lt; result.worstDist() ||  !result.full()) {</font><br>
+<font size="3">            heap-&gt;insert( BranchSt::make_branch(otherChild, new_distsq) );</font><br>
+<font size="3">        }</font><br>
+<span style='font-weight: normal;'><font color="#204a87"><font size="2">(16:32:57) </font></font></span><span style='font-weight: bold;color: #204a87;'><font size="3">turian@gmail.com/Home360F0002: </font></span><font size="3">That line?</font><br>
+<span style='font-weight: normal;'><font size="2"><font color="#cc0000">(16:34:30) </font></font></span><span style='font-weight: bold;color: #cc0000;'><font size="3">Marius Muja: </font></span><font size="3">that and also the first if in that function</font><br>
+<span style='font-weight: normal;'><font color="#204a87"><font size="2">(16:34:57) </font></font></span><span style='font-weight: bold;color: #204a87;'><font size="3">turian@gmail.com/Home360F0002: </font></span><font size="3">For this reason do you think dot distance will be much slower?</font><br>
+<span style='font-weight: normal;'><font size="2"><font color="#cc0000">(16:35:27) </font></font></span><span style='font-weight: bold;color: #cc0000;'><font size="3">Marius Muja: </font></span><font size="3">no, I don't think it would be slower</font><br>
+<span style='font-weight: normal;'><font color="#204a87"><font size="2">(16:36:29) </font></font></span><span style='font-weight: bold;color: #204a87;'><font size="3">turian@gmail.com/Home360F0002: </font></span><font size="3">Is there anything to change in kmeanstree.h ?</font><br>
+<span style='font-weight: normal;'><font color="#204a87"><font size="2">(16:52:18) </font></font></span><span style='font-weight: bold;color: #204a87;'><font size="3">turian@gmail.com/Home360F0002: </font></span><font size="3">So let me tell you what I see:</font><br>
+<span style='font-weight: normal;'><font color="#204a87"><font size="2">(16:52:26) </font></font></span><span style='font-weight: bold;color: #204a87;'><font size="3">turian@gmail.com/Home360F0002: </font></span><font size="3">I made the KDtree.h change you proposed</font><br>
+<span style='font-weight: normal;'><font color="#204a87"><font size="2">(16:53:00) </font></font></span><span style='font-weight: bold;color: #204a87;'><font size="3">turian@gmail.com/Home360F0002: </font></span><font size="3">If I do the following:</font><br>
+<span style='font-weight: normal;'><font color="#204a87"><font size="2">(16:53:03) </font></font></span><span style='font-weight: bold;color: #204a87;'><font size="3">turian@gmail.com/Home360F0002: </font></span><font size="3">template &lt;typename Iterator1, typename Iterator2&gt;</font><br>
+<font size="3">double dot_dist(Iterator1 first1, Iterator1 last1, Iterator2 first2, double acc = 0)</font><br>
+<font size="3">{</font><br>
+<font size="3">    double dist = acc;</font><br>
+<font size="3">    double dot0, dot1, dot2, dot3;</font><br>
+<font size="3">    Iterator1 lastgroup = last1 - 3;</font><br>
+<font size="3">    // Add one to prevent negative distance.</font><br>
+<font size="3">    dist += 1;</font><br>
+<span style='font-weight: normal;'><font color="#204a87"><font size="2">(16:53:13) </font></font></span><span style='font-weight: bold;color: #204a87;'><font size="3">turian@gmail.com/Home360F0002: </font></span><font size="3">Then the Kmeans tree code appears to work correctly.</font><br>
+<span style='font-weight: normal;'><font color="#204a87"><font size="2">(16:53:23) </font></font></span><span style='font-weight: bold;color: #204a87;'><font size="3">turian@gmail.com/Home360F0002: </font></span><font size="3">You'll see that I add 1 to the distance every time dot_dist is called.</font><br>
+<span style='font-weight: normal;'><font color="#204a87"><font size="2">(16:53:28) </font></font></span><span style='font-weight: bold;color: #204a87;'><font size="3">turian@gmail.com/Home360F0002: </font></span><font size="3">I'm not sure, is this valid?</font><br>
+<span style='font-weight: normal;'><font color="#204a87"><font size="2">(16:53:47) </font></font></span><span style='font-weight: bold;color: #204a87;'><font size="3">turian@gmail.com/Home360F0002: </font></span><font size="3">If I remove the 'dist += 1' line, then kmeans doesn't work any more</font><br>
+<span style='font-weight: normal;'><font color="#204a87"><font size="2">(16:55:47) </font></font></span><span style='font-weight: bold;color: #204a87;'><font size="3">turian@gmail.com/Home360F0002: </font></span><font size="3">I keep getting output like the following:</font><br>
+<span style='font-weight: normal;'><font color="#204a87"><font size="2">(16:55:49) </font></font></span><span style='font-weight: bold;color: #204a87;'><font size="3">turian@gmail.com/Home360F0002: </font></span><font size="3">Autotuning parameters...</font><br>
+<font size="3">KMEANS, Step 1: Exploring parameter space</font><br>
+<font size="3">KMeansTree using params: max_iterations=1, branching=16</font><br>
+<font size="3">  Nodes  Precision(%)   Time(s)   Time/vec(ms)  Mean dist</font><br>
+<font size="3">---------------------------------------------------------</font><br>
+<font size="3">       1          1       2.87       16.4          1</font><br>
+<font size="3">Got as close as I can</font><br>
+<span style='font-weight: normal;'><font color="#204a87"><font size="2">(16:58:30) </font></font></span><span style='font-weight: bold;color: #204a87;'><font size="3">turian@gmail.com/Home360F0002: </font></span><font size="3">Without dist += 1, (continuing the log output)</font><br>
+<span style='font-weight: normal;'><font color="#204a87"><font size="2">(16:58:33) </font></font></span><span style='font-weight: bold;color: #204a87;'><font size="3">turian@gmail.com/Home360F0002: </font></span><font size="3">kdtrees blows up</font><br>
+<span style='font-weight: normal;'><font color="#204a87"><font size="2">(16:58:35) </font></font></span><span style='font-weight: bold;color: #204a87;'><font size="3">turian@gmail.com/Home360F0002: </font></span><font size="3">KD-TREE, Step 1: Exploring parameter space</font><br>
+<font size="3">KDTree using params: trees=1</font><br>
+<font size="3">  Nodes  Precision(%)   Time(s)   Time/vec(ms)  Mean dist</font><br>
+<font size="3">---------------------------------------------------------</font><br>
+<font size="3">       1     0.1371    0.00625   0.035714    0.59909</font><br>
+<font size="3">       2     0.1486      0.008   0.045714    0.67026</font><br>
+<font size="3">       4     0.2286   0.011765   0.067227    0.77663</font><br>
+<font size="3">       8     0.3543   0.019091    0.10909    0.86297</font><br>
+<font size="3">      16     0.4514   0.031429    0.17959    0.89852</font><br>
+<font size="3">      32     0.4743   0.033333    0.19048     0.9112</font><br>
+<font size="3">      64     0.4743   0.033333    0.19048     0.9112</font><br>
+<font size="3">     128     0.4743      0.035        0.2     0.9112</font><br>
+<font size="3">     256     0.4743   0.033333    0.19048     0.9112</font><br>
+<font size="3">     512     0.4743      0.035        0.2     0.9112</font><br>
+<font size="3">    1024     0.4743   0.033333    0.19048     0.9112</font><br>
+<font size="3">    2048     0.4743   0.033333    0.19048     0.9112</font><br>
+<font size="3">    4096     0.4743   0.033333    0.19048     0.9112</font><br>
+<font size="3">    8192     0.4743   0.033333    0.19048     0.9112</font><br>
+<font size="3">   16384     0.4743   0.033333    0.19048     0.9112</font><br>
+<font size="3">   32768     0.4743   0.033333    0.19048     0.9112</font><br>
+<font size="3">   65536     0.4743   0.033333    0.19048     0.9112</font><br>
+<font size="3">  131072     0.4743      0.035        0.2     0.9112</font><br>
+<font size="3">  262144     0.4743   0.033333    0.19048     0.9112</font><br>
+<font size="3">  524288     0.4743   0.033333    0.19048     0.9112</font><br>
+<font size="3"> 1048576     0.4743      0.035        0.2     0.9112</font><br>
+<font size="3"> 2097152     0.4743   0.033333    0.19048     0.9112</font><br>
+<font size="3"> 4194304     0.4743      0.035        0.2     0.9112</font><br>
+<font size="3"> 8388608     0.4743   0.033333    0.19048     0.9112</font><br>
+<font size="3">16777216     0.4743   0.033333    0.19048     0.9112</font><br>
+<font size="3">33554432     0.4743      0.035        0.2     0.9112</font><br>
+<font size="3">67108864     0.4743   0.033333    0.19048     0.9112</font><br>
+<font size="3">134217728     0.4743      0.035        0.2     0.9112</font><br>
+<font size="3">268435456     0.4743   0.033333    0.19048     0.9112</font><br>
+<font size="3">536870912     0.4743   0.033333    0.19048     0.9112</font><br>
+<font size="3">1073741824     0.4743      0.035        0.2     0.9112</font><br>
+<font size="3">-2147483648          1       3.03     17.314          1</font><br>
+<font size="3">Start linear estimation</font><br>
+<font size="3">-536870912          1       3.03     17.314          1</font><br>
+<font size="3">268435456     0.4743      0.035        0.2     0.9112</font><br>
+<font size="3">-134217728          1       3.04     17.371          1</font><br>
+<font size="3">67108864     0.4743   0.033333    0.19048     0.9112</font><br>
+<font size="3">-33554432          1       3.04     17.371          1</font><br>
+<font size="3">16777216     0.4743      0.035        0.2     0.9112</font><br>
+<font size="3">-8388608          1       3.04     17.371          1</font><br>
+<font size="3"> 4194304     0.4743      0.035        0.2     0.9112</font><br>
+<span style='font-weight: normal;'><font color="#204a87"><font size="2">(16:58:53) </font></font></span><span style='font-weight: bold;color: #204a87;'><font size="3">turian@gmail.com/Home360F0002: </font></span><font size="3">KD-TREE, Step 1: Exploring parameter space</font><br>
+<font size="3">KDTree using params: trees=1</font><br>
+<font size="3">  Nodes  Precision(%)   Time(s)   Time/vec(ms)  Mean dist</font><br>
+<font size="3">---------------------------------------------------------</font><br>
+<font size="3">       1     0.1371    0.00625   0.035714    0.59909</font><br>
+<font size="3">       2     0.1486      0.008   0.045714    0.67026</font><br>
+<font size="3">       4     0.2286   0.011765   0.067227    0.77663</font><br>
+<font size="3">       8     0.3543   0.019091    0.10909    0.86297</font><br>
+<font size="3">      16     0.4514   0.031429    0.17959    0.89852</font><br>
+<font size="3">      32     0.4743   0.033333    0.19048     0.9112</font><br>
+<font size="3">      64     0.4743   0.033333    0.19048     0.9112</font><br>
+<font size="3">     128     0.4743      0.035        0.2     0.9112</font><br>
+<font size="3">     256     0.4743   0.033333    0.19048     0.9112</font><br>
+<font size="3">     512     0.4743      0.035        0.2     0.9112</font><br>
+<font size="3">    1024     0.4743   0.033333    0.19048     0.9112</font><br>
+<font size="3">    2048     0.4743   0.033333    0.19048     0.9112</font><br>
+<font size="3">    4096     0.4743   0.033333    0.19048     0.9112</font><br>
+<font size="3">    8192     0.4743   0.033333    0.19048     0.9112</font><br>
+<font size="3">   16384     0.4743   0.033333    0.19048     0.9112</font><br>
+<font size="3">   32768     0.4743   0.033333    0.19048     0.9112</font><br>
+<font size="3">   65536     0.4743   0.033333    0.19048     0.9112</font><br>
+<font size="3">  131072     0.4743      0.035        0.2     0.9112</font><br>
+<font size="3">  262144     0.4743   0.033333    0.19048     0.9112</font><br>
+<font size="3">  524288     0.4743   0.033333    0.19048     0.9112</font><br>
+<font size="3"> 1048576     0.4743      0.035        0.2     0.9112</font><br>
+<font size="3"> 2097152     0.4743   0.033333    0.19048     0.9112</font><br>
+<font size="3"> 4194304     0.4743      0.035        0.2     0.9112</font><br>
+<font size="3"> 8388608     0.4743   0.033333    0.19048     0.9112</font><br>
+<font size="3">16777216     0.4743   0.033333    0.19048     0.9112</font><br>
+<font size="3">33554432     0.4743      0.035        0.2     0.9112</font><br>
+<font size="3">67108864     0.4743   0.033333    0.19048     0.9112</font><br>
+<font size="3">134217728     0.4743      0.035        0.2     0.9112</font><br>
+<font size="3">268435456     0.4743   0.033333    0.19048     0.9112</font><br>
+<font size="3">536870912     0.4743   0.033333    0.19048     0.9112</font><br>
+<font size="3">1073741824     0.4743      0.035        0.2     0.9112</font><br>
+<font size="3">-2147483648          1       3.03     17.314          1</font><br>
+<font size="3">Start linear estimation</font><br>
+<font size="3">-536870912          1       3.03     17.314          1</font><br>
+<font size="3">268435456     0.4743      0.035        0.2     0.9112</font><br>
+<font size="3">-134217728          1       3.04     17.371          1</font><br>
+<font size="3">67108864     0.4743   0.033333    0.19048     0.9112</font><br>
+<font size="3">-33554432          1       3.04     17.371          1</font><br>
+<font size="3">16777216     0.4743      0.035        0.2     0.9112</font><br>
+<font size="3">-8388608          1       3.04     17.371          1</font><br>
+<font size="3"> 4194304     0.4743      0.035        0.2     0.9112</font><br>
+<span style='font-weight: normal;'><font color="#204a87"><font size="2">(16:59:03) </font></font></span><span style='font-weight: bold;color: #204a87;'><font size="3">turian@gmail.com/Home360F0002: </font></span><font size="3">KD-TREE, Step 1: Exploring parameter space</font><br>
+<font size="3">KDTree using params: trees=1</font><br>
+<font size="3">  Nodes  Precision(%)   Time(s)   Time/vec(ms)  Mean dist</font><br>
+<font size="3">---------------------------------------------------------</font><br>
+<font size="3">       1     0.1371    0.00625   0.035714    0.59909</font><br>
+<font size="3">       2     0.1486      0.008   0.045714    0.67026</font><br>
+<font size="3">       4     0.2286   0.011765   0.067227    0.77663</font><br>
+<font size="3">       8     0.3543   0.019091    0.10909    0.86297</font><br>
+<font size="3">      16     0.4514   0.031429    0.17959    0.89852</font><br>
+<font size="3">      32     0.4743   0.033333    0.19048     0.9112</font><br>
+<font size="3">      64     0.4743   0.033333    0.19048     0.9112</font><br>
+<font size="3">     128     0.4743      0.035        0.2     0.9112</font><br>
+<font size="3">     256     0.4743   0.033333    0.19048     0.9112</font><br>
+<font size="3">     512     0.4743      0.035        0.2     0.9112</font><br>
+<font size="3">    1024     0.4743   0.033333    0.19048     0.9112</font><br>
+<font size="3">    2048     0.4743   0.033333    0.19048     0.9112</font><br>
+<font size="3">    4096     0.4743   0.033333    0.19048     0.9112</font><br>
+<font size="3">    8192     0.4743   0.033333    0.19048     0.9112</font><br>
+<font size="3">   16384     0.4743   0.033333    0.19048     0.9112</font><br>
+<font size="3">   32768     0.4743   0.033333    0.19048     0.9112</font><br>
+<font size="3">   65536     0.4743   0.033333    0.19048     0.9112</font><br>
+<font size="3">  131072     0.4743      0.035        0.2     0.9112</font><br>
+<font size="3">  262144     0.4743   0.033333    0.19048     0.9112</font><br>
+<font size="3">  524288     0.4743   0.033333    0.19048     0.9112</font><br>
+<font size="3"> 1048576     0.4743      0.035        0.2     0.9112</font><br>
+<font size="3"> 2097152     0.4743   0.033333    0.19048     0.9112</font><br>
+<font size="3"> 4194304     0.4743      0.035        0.2     0.9112</font><br>
+<font size="3"> 8388608     0.4743   0.033333    0.19048     0.9112</font><br>
+<font size="3">16777216     0.4743   0.033333    0.19048     0.9112</font><br>
+<font size="3">33554432     0.4743      0.035        0.2     0.9112</font><br>
+<font size="3">67108864     0.4743   0.033333    0.19048     0.9112</font><br>
+<font size="3">134217728     0.4743      0.035        0.2     0.9112</font><br>
+<font size="3">268435456     0.4743   0.033333    0.19048     0.9112</font><br>
+<font size="3">536870912     0.4743   0.033333    0.19048     0.9112</font><br>
+<font size="3">1073741824     0.4743      0.035        0.2     0.9112</font><br>
+<font size="3">-2147483648          1       3.03     17.314          1</font><br>
+<font size="3">Start linear estimation</font><br>
+<font size="3">-536870912          1       3.03     17.314          1</font><br>
+<font size="3">268435456     0.4743      0.035        0.2     0.9112</font><br>
+<font size="3">-134217728          1       3.04     17.371          1</font><br>
+<font size="3">67108864     0.4743   0.033333    0.19048     0.9112</font><br>
+<font size="3">-33554432          1       3.04     17.371          1</font><br>
+<font size="3">16777216     0.4743      0.035        0.2     0.9112</font><br>
+<font size="3">-8388608          1       3.04     17.371          1</font><br>
+<font size="3"> 4194304     0.4743      0.035        0.2     0.9112</font><br>
+<span style='font-weight: normal;'><font color="#204a87"><font size="2">(16:59:08) </font></font></span><span style='font-weight: bold;color: #204a87;'><font size="3">turian@gmail.com/Home360F0002: </font></span><font size="3">oops</font><br>
+<span style='font-weight: normal;'><font color="#204a87"><font size="2">(16:59:58) </font></font></span><span style='font-weight: bold;color: #204a87;'><font size="3">turian@gmail.com/Home360F0002: </font></span><font size="3">67108864     0.4743   0.033333    0.19048     0.9112</font><br>
+<font size="3">-33554432          1       3.04     17.371          1</font><br>
+<font size="3">16777216     0.4743      0.035        0.2     0.9112</font><br>
+<font size="3">-8388608          1       3.04     17.371          1</font><br>
+<font size="3"> 4194304     0.4743      0.035        0.2     0.9112</font><br>
+<font size="3">-2097152          1       3.02     17.257          1</font><br>
+<font size="3"> 1048576     0.4743      0.035        0.2     0.9112</font><br>
+<font size="3"> -524288          1       3.04     17.371          1</font><br>
+<font size="3">  262144     0.4743      0.035        0.2     0.9112</font><br>
+<font size="3"> -131072          1       3.04     17.371          1</font><br>
+<font size="3">   65536     0.4743   0.033333    0.19048     0.9112</font><br>
+<font size="3">  -32768          1  It doesn't m67108864     0.4743   0.033333    0.19048     0.9112</font><br>
+<font size="3">-33554432          1       3.04     17.371          1</font><br>
+<font size="3">16777216     0.4743      0.035        0.2     0.9112</font><br>
+<font size="3">-8388608          1       3.04     17.371          1</font><br>
+<font size="3"> 4194304     0.4743      0.035        0.2     0.9112</font><br>
+<font size="3">-2097152          1       3.02     17.257          1</font><br>
+<font size="3"> 1048576     0.4743      0.035        0.2     0.9112</font><br>
+<font size="3"> -524288          1       3.04     17.371          1</font><br>
+<font size="3">  262144     0.4743      0.035        0.2     0.9112</font><br>
+<font size="3"> -131072          1       3.04     17.371          1</font><br>
+<font size="3">   65536     0.4743   0.033333    0.19048     0.9112</font><br>
+<font size="3">  -32768          1  It doesn't make any sense to use more than one tree for exact searchIt doesn't make any sense to use more than one tree for exact searchIt doesn't make any sense to use more than one tree for exact searchIt doesn't make any sense to use more than one tree for exact searchIt doesn't make any sense to use more than one tree for exact searchIt doesn't make any sense to use more than one tree for exact searchIt doesn't make any sense to use more than one tree for exact searchIt doesn't make any sense to use more than one tree for exact searchIt doesn't make any sense to use more than one tree for exact searchIt doesn't make any sense to use more than one tree for exact searchIt doesn't make any sense to use more than one tree for exact searchIt doesn't make any sense to use more than one tree for exact searchIt doesn't make any sense to use more than one tree for exact searchIt doesn't make any sense to use more than one tree for exact searchIt doesn't make any sense to use more than one tree for exact searchIt doesn't make any sense to use more than one tree for exact searchIt doesn't make any sense to use more than one tree for exact searchIt doesn't make any sense to use more than one tree for exact searchIt doesn't make any sense to use more than one tree for exact searchIt doesn't make any sense to use more than one tree for exact searchIt doesn't make any sense to use more than one tree for exact searchIt doesn't make any sense to use more than one tree for exact searchIt doesn't make any sense to use more than one tree for exact searchIt doesn't make any sense to use more than one tree for exact searchIt doesn't make any sense to use more than one tree for exact searchIt doesn't make any sense to use more than one tree for exact searchIt doesn't make any sense to use more than one tree for exact searchIt doesn't make any sense to use more than one tree for exact searchIt doesn't make any sense to use more than one tree for exact searchIt doesn't make any sense to use more than one tree for exact searchIt doesn't make any sense to use more than one tree for exact searchIt doesn't make any sense to use more than one tree for exact searchIt doesn't make any sense to use more than one tree for exact searchIt doesn't make any sense to use more than one tree for exact searchIt doesn't make any sense to use more than one tree for exact searchIt doesn't make any sense to use more than one tree for exact searchIt doesn't make any sense to use more than one tree for exact searchIt doesn't make any sense to use more than one tree for exact searchIt doesn't make any sense to use more than one tree for exact searchIt doesn't make any sense to use more than one tree for exact searchIt doesn't make any sense to use more than one tree for exact searchIt doesn't make any sense to use more than one tree for exact searchIt doesn't make any sense to use more than one tree for exact searchIt doesn't make any sense to use more than one tree for exact searchIt doesn't make any sense to use more than one tree for exact searchIt doesn't make any sense to use more than one tree for exact searchIt doesn't make any sense to use more than one tree for exact searchIt doesn't make any sense to use more than one tree for exact searchIt doesn't make any sense to use more than one tree for exact searchIt doesn't make any sense to use more than one tree for exact searchIt doesn't make any sense to use more than one tree for exact searchIt doesn't make any sense to use more than one tree for exact searchIt doesn't make any sense to use more than one tree for exact searchIt doesn't make any sense to use more than one tree for exact searchIt doesn't make any sense to use more than one tree for exact searchIt doesn't make any sense to use more than one tree for exact seaake any sense to use more than one tree for exact searchIt doesn't make any sense to use more than one tree for exact searchIt doesn't make any sense to use more than one tree for exact searchIt doesn't make any sense to use more than one tree for exact searchIt doesn't make any sense to use more than one tree for exact searchIt doesn't make any sense to use more than one tree for exact searchIt doesn't make any sense to use more than one tree for exact searchIt doesn't make any sense to use more than one tree for exact searchIt doesn't make any sense to use more than one tree for exact searchIt doesn't make any sense to use more than one tree for exact searchIt doesn't make any sense to use more than one tree for exact searchIt doesn't make any sense to use more than one tree for exact searchIt doesn't make any sense to use more than one tree for exact searchIt doesn't make any sense to use more than one tree for exact searchIt doesn't make any sense to use more than one tree for exact searchIt doesn't make any sense to use more than one tree for exact searchIt doesn't make any sense to use more than one tree for exact searchIt doesn't make any sense to use more than one tree for exact searchIt doesn't make any sense to use more than one tree for exact searchIt doesn't make any sense to use more than one tree for exact searchIt doesn't make any sense to use more than one tree for exact searchIt doesn't make any sense to use more than one tree for exact searchIt doesn't make any sense to use more than one tree for exact searchIt doesn't make any sense to use more than one tree for exact searchIt doesn't make any sense to use more than one tree for exact searchIt doesn't make any sense to use more than one tree for exact searchIt doesn't make any sense to use more than one tree for exact searchIt doesn't make any sense to use more than one tree for exact searchIt doesn't make any sense to use more than one tree for exact searchIt doesn't make any sense to use more than one tree for exact searchIt doesn't make any sense to use more than one tree for exact searchIt doesn't make any sense to use more than one tree for exact searchIt doesn't make any sense to use more than one tree for exact searchIt doesn't make any sense to use more than one tree for exact searchIt doesn't make any sense to use more than one tree for exact searchIt doesn't make any sense to use more than one tree for exact searchIt doesn't make any sense to use more than one tree for exact searchIt doesn't make any sense to use more than one tree for exact searchIt doesn't make any sense to use more than one tree for exact searchIt doesn't make any sense to use more than one tree for exact searchIt doesn't make any sense to use more than one tree for exact searchIt doesn't make any sense to use more than one tree for exact searchIt doesn't make any sense to use more than one tree for exact searchIt doesn't make any sense to use more than one tree for exact searchIt doesn't make any sense to use more than one tree for exact searchIt doesn't make any sense to use more than one tree for exact searchIt doesn't make any sense to use more than one tree for exact searchIt doesn't make any sense to use more than one tree for exact searchIt doesn't make any sense to use more than one tree for exact searchIt doesn't make any sense to use more than one tree for exact searchIt doesn't make any sense to use more than one tree for exact searchIt doesn't make any sense to use more than one tree for exact searchIt doesn't make any sense to use more than one tree for exact searchIt doesn't make any sense to use more than one tree for exact searchIt doesn't make any sense to use more than one tree for exact searchIt doesn't make any sense to use more than one tree for exact sea</font><br>
+<span style='font-weight: normal;'><font color="#204a87"><font size="2">(17:00:08) </font></font></span><span style='font-weight: bold;color: #204a87;'><font size="3">turian@gmail.com/Home360F0002: </font></span><font size="3">sorry for the big dump</font><br>
+<span style='font-weight: normal;'><font color="#204a87"><font size="2">(17:03:18) </font></font></span><span style='font-weight: bold;color: #204a87;'><font size="3">turian@gmail.com/Home360F0002: </font></span><font size="3">Do you know why kdtree is blowing up? </font><br>
+<span style='font-weight: normal;'><font color="#204a87"><font size="2">(17:03:22) </font></font></span><span style='font-weight: bold;color: #204a87;'><font size="3">turian@gmail.com/Home360F0002: </font></span><font size="3">Negatve distances?</font><br>
+<span style='font-weight: normal;'><font color="#204a87"><font size="2">(17:03:59) </font></font></span><span style='font-weight: bold;color: #204a87;'><font size="3">turian@gmail.com/Home360F0002: </font></span><font size="3">It is exceeding the maximum number of nodes</font><br>
+<span style='font-weight: normal;'><font size="2"><font color="#cc0000">(17:04:57) </font></font></span><span style='font-weight: bold;color: #cc0000;'><font size="3">Marius Muja: </font></span><font size="3">I cannot really say what's the problem</font><br>
+<span style='font-weight: normal;'><font size="2"><font color="#cc0000">(17:05:28) </font></font></span><span style='font-weight: bold;color: #cc0000;'><font size="3">Marius Muja: </font></span><font size="3">except the obvious, it cannot get above 47% precision and it keeps trying</font><br>
+<span style='font-weight: normal;'><font size="2"><font color="#cc0000">(17:06:10) </font></font></span><span style='font-weight: bold;color: #cc0000;'><font size="3">Marius Muja: </font></span><font size="3">for the kmeans, teh distance has to be positive, that's why it doesn't work without teh 1</font><br>
+<span style='font-weight: normal;'><font color="#204a87"><font size="2">(17:06:17) </font></font></span><span style='font-weight: bold;color: #204a87;'><font size="3">turian@gmail.com/Home360F0002: </font></span><font size="3">okay</font><br>
+<span style='font-weight: normal;'><font color="#204a87"><font size="2">(17:06:41) </font></font></span><span style='font-weight: bold;color: #204a87;'><font size="3">turian@gmail.com/Home360F0002: </font></span><font size="3">But for kmeans, I should be able to use acc=1 as the default parameter, instead of adding 1 at every call.</font><br>
+<span style='font-weight: normal;'><font color="#204a87"><font size="2">(17:06:53) </font></font></span><span style='font-weight: bold;color: #204a87;'><font size="3">turian@gmail.com/Home360F0002: </font></span><font size="3">But if I do acc=1, I get the same result as if I have negative dist :(</font><br>
+<span style='font-weight: normal;'><font color="#204a87"><font size="2">(17:07:41) </font></font></span><span style='font-weight: bold;color: #204a87;'><font size="3">turian@gmail.com/Home360F0002: </font></span><font size="3">Where in Autotune.h should I modify if I only want to autotune with kmeans? </font><br>
+<span style='font-weight: normal;'><font color="#204a87"><font size="2">(17:07:45) </font></font></span><span style='font-weight: bold;color: #204a87;'><font size="3">turian@gmail.com/Home360F0002: </font></span><font size="3">Or autotune only with kdtree</font><br>
+<span style='font-weight: normal;'><font size="2"><font color="#cc0000">(17:09:00) </font></font></span><span style='font-weight: bold;color: #cc0000;'><font size="3">Marius Muja: </font></span><font size="3">function estimateBuildIndexParams in nn/Autotune.h</font><br>
+<span style='font-weight: normal;'><font color="#204a87"><font size="2">(17:09:53) </font></font></span><span style='font-weight: bold;color: #204a87;'><font size="3">turian@gmail.com/Home360F0002: </font></span><font size="3">thanks</font><br>
+<span style='font-weight: normal;'><font color="#204a87"><font size="2">(17:10:28) </font></font></span><span style='font-weight: bold;color: #204a87;'><font size="3">turian@gmail.com/Home360F0002: </font></span><font size="3">So if I +1 to the dist every time that dot_dist is called</font><br>
+<span style='font-weight: normal;'><font color="#204a87"><font size="2">(17:10:33) </font></font></span><span style='font-weight: bold;color: #204a87;'><font size="3">turian@gmail.com/Home360F0002: </font></span><font size="3">kmeans seems to work fine.</font><br>
+<span style='font-weight: normal;'><font color="#204a87"><font size="2">(17:10:42) </font></font></span><span style='font-weight: bold;color: #204a87;'><font size="3">turian@gmail.com/Home360F0002: </font></span><font size="3">I am going to try this with kdtree</font><br>
+<span style='font-weight: normal;'><font color="#204a87"><font size="2">(17:10:44) </font></font></span><span style='font-weight: bold;color: #204a87;'><font size="3">turian@gmail.com/Home360F0002: </font></span><font size="3">and see if that works</font><br>
+<span style='font-weight: normal;'><font color="#204a87"><font size="2">(17:10:54) </font></font></span><span style='font-weight: bold;color: #204a87;'><font size="3">turian@gmail.com/Home360F0002: </font></span><font size="3">because it's the only approach that works for kmeans</font><br>
+<span style='font-weight: normal;'><font color="#204a87"><font size="2">(17:13:10) </font></font></span><span style='font-weight: bold;color: #204a87;'><font size="3">turian@gmail.com/Home360F0002: </font></span><font size="3">hmmm</font><br>
+<span style='font-weight: normal;'><font color="#204a87"><font size="2">(17:13:12) </font></font></span><span style='font-weight: bold;color: #204a87;'><font size="3">turian@gmail.com/Home360F0002: </font></span><font size="3">this doesn't work</font><br>
+<span style='font-weight: normal;'><font color="#204a87"><font size="2">(17:13:20) </font></font></span><span style='font-weight: bold;color: #204a87;'><font size="3">turian@gmail.com/Home360F0002: </font></span><font size="3">kdtree still is only getting 40% accuracy</font><br>
+<span style='font-weight: normal;'><font color="#204a87"><font size="2">(17:13:35) </font></font></span><span style='font-weight: bold;color: #204a87;'><font size="3">turian@gmail.com/Home360F0002: </font></span><font size="3">Should that ever actually happen that it can't achieve 100%</font><br>
+<span style='font-weight: normal;'><font color="#204a87"><font size="2">(17:13:37) </font></font></span><span style='font-weight: bold;color: #204a87;'><font size="3">turian@gmail.com/Home360F0002: </font></span><font size="3">?</font><br>
+<span style='font-weight: normal;'><font size="2"><font color="#cc0000">(17:14:48) </font></font></span><span style='font-weight: bold;color: #cc0000;'><font size="3">Marius Muja: </font></span><font size="3">no, it it searches with enough number of checks it should get to 100%</font><br>
+<span style='font-weight: normal;'><font size="2"><font color="#cc0000">(17:15:18) </font></font></span><span style='font-weight: bold;color: #cc0000;'><font size="3">Marius Muja: </font></span><font size="3">actually the kd-tree makes an approximation that might prevent it to always get to 100%, but it gets to 99.9%</font><br>
+<span style='font-weight: normal;'><font color="#204a87"><font size="2">(17:15:22) </font></font></span><span style='font-weight: bold;color: #204a87;'><font size="3">turian@gmail.com/Home360F0002: </font></span><font size="3">okay</font><br>
+<span style='font-weight: normal;'><font color="#204a87"><font size="2">(17:16:15) </font></font></span><span style='font-weight: bold;color: #204a87;'><font size="3">turian@gmail.com/Home360F0002: </font></span><font size="3">Here is my diff for KDtree.h</font><br>
+<span style='font-weight: normal;'><font color="#204a87"><font size="2">(17:16:18) </font></font></span><span style='font-weight: bold;color: #204a87;'><font size="3">turian@gmail.com/Home360F0002: </font></span><font size="3">does this look right?</font><br>
+<span style='font-weight: normal;'><font color="#204a87"><font size="2">(17:16:19) </font></font></span><span style='font-weight: bold;color: #204a87;'><font size="3">turian@gmail.com/Home360F0002: </font></span><font size="3">@@ -487,10 +487,10 @@ private:</font><br>
+<font size="3">        */</font><br>
+<font size="3">        void searchLevel(ResultSet&amp; result, float* vec, Tree node, float mindistsq, int&amp; checkCount, int maxCheck)</font><br>
+<font size="3">        {</font><br>
+<font size="3">-               if (result.worstDist()&lt;mindistsq) {</font><br>
+<font size="3">-//                     printf(&quot;Ignoring branch, too far\n&quot;);</font><br>
+<font size="3">-                       return;</font><br>
+<font size="3">-               }</font><br>
+<font size="3">+//             if (result.worstDist()&lt;mindistsq) {</font><br>
+<font size="3">+// //                  printf(&quot;Ignoring branch, too far\n&quot;);</font><br>
+<font size="3">+//                     return;</font><br>
+<font size="3">+//             }</font><br>
+<font size="3"> </font><br>
+<font size="3">                float val, diff;</font><br>
+<font size="3">                Tree bestChild, otherChild;</font><br>
+<font size="3">@@ -528,7 +528,8 @@ private:</font><br>
+<font size="3"> </font><br>
+<font size="3">                double new_distsq = flann_dist(&amp;val, &amp;val+1, &amp;node-&gt;divval, mindistsq);</font><br>
+<font size="3"> //             if (2 * checkCount &lt; maxCheck  ||  !result.full()) {</font><br>
+<font size="3">-               if (new_distsq &lt; result.worstDist() ||  !result.full()) {</font><br>
+<font size="3">+//             if (new_distsq &lt; result.worstDist() ||  !result.full()) {</font><br>
+<font size="3">+               if (!result.full()) {</font><br>
+<font size="3">                        heap-&gt;insert( BranchSt::make_branch(otherChild, new_distsq) );</font><br>
+<font size="3">                }</font><br>
+<font size="3"> </font><br>
+<font size="3">@@ -541,9 +542,11 @@ private:</font><br>
+<font size="3">         */</font><br>
+<font size="3">        void searchLevelExact(ResultSet&amp; result, float* vec, Tree node, float mindistsq)</font><br>
+<font size="3">        {</font><br>
+<font size="3">+/*</font><br>
+<font size="3">                if (mindistsq&gt;result.worstDist()) {</font><br>
+<font size="3">                        return;</font><br>
+<font size="3">                }</font><br>
+<font size="3">+*/</font><br>
+<font size="3"> </font><br>
+<span style='font-weight: normal;'><font size="2"><font color="#cc0000">(17:21:17) </font></font></span><span style='font-weight: bold;color: #cc0000;'><font size="3">Marius Muja: </font></span><font size="3">looks ok, but it won't do any tree branch pruning if you remove thse checks</font><br>
+<span style='font-weight: normal;'><font color="#204a87"><font size="2">(17:21:35) </font></font></span><span style='font-weight: bold;color: #204a87;'><font size="3">turian@gmail.com/Home360F0002: </font></span><font size="3">Right wasn't that what you instructed me to do?</font><br>
+<span style='font-weight: normal;'><font color="#204a87"><font size="2">(17:21:44) </font></font></span><span style='font-weight: bold;color: #204a87;'><font size="3">turian@gmail.com/Home360F0002: </font></span><font size="3">I was asking earlier if this would make the code much slower</font><br>
+<span style='font-weight: normal;'><font color="#204a87"><font size="2">(17:21:50) </font></font></span><span style='font-weight: bold;color: #204a87;'><font size="3">turian@gmail.com/Home360F0002: </font></span><font size="3">but you said you thought it wouldn't</font><br>
+<span style='font-weight: normal;'><font color="#204a87"><font size="2">(17:21:58) </font></font></span><span style='font-weight: bold;color: #204a87;'><font size="3">turian@gmail.com/Home360F0002: </font></span><font size="3">or did you have a different approach in mind?</font><br>
+<span style='font-weight: normal;'><font size="2"><font color="#cc0000">(17:22:27) </font></font></span><span style='font-weight: bold;color: #cc0000;'><font size="3">Marius Muja: </font></span><font size="3">oh, I missunderstood your question</font><br>
+<span style='font-weight: normal;'><font size="2"><font color="#cc0000">(17:22:33) </font></font></span><span style='font-weight: bold;color: #cc0000;'><font size="3">Marius Muja: </font></span><font size="3">yes, that would make the code slower</font><br>
+<span style='font-weight: normal;'><font color="#204a87"><font size="2">(17:22:47) </font></font></span><span style='font-weight: bold;color: #204a87;'><font size="3">turian@gmail.com/Home360F0002: </font></span><font size="3">gah</font><br>
+<span style='font-weight: normal;'><font color="#204a87"><font size="2">(17:23:32) </font></font></span><span style='font-weight: bold;color: #204a87;'><font size="3">turian@gmail.com/Home360F0002: </font></span><font size="3">I'm still wondering why without pruning it nonetheless blows up</font>
+</body>
+</html>

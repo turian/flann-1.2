@@ -6,25 +6,36 @@ See the doc/manual.pdf file for information on how to use the library.
 
 ================
 
+READ THIS ENTIRE SECTION BEFORE USING MY CODE
+
 Forked by Joseph Turian:
-http://github.com/turian/flann/
+    http://github.com/turian/flann-1.2/tree/master
 
-
-I have forked flann-1.2 from
-http://www.cs.ubc.ca/~mariusm/index.php/FLANN/FLANN
+I have forked flann-1.2 from:
+    http://www.cs.ubc.ca/~mariusm/index.php/FLANN/FLANN
 in order to make the following changes:
 
 * Added a DOT distance measure.
-  This is 1-dot(x,y).
-  WARNING: This might not work. See email exchange at end of README.
+  This is 1-dot(x,y). This only works with KMeans! KDtrees don't work.
   WARNING: I don't know if this will break FLANN if your dot-product is
   outside the range of [0,1], but mine never are because I pre-normalize.
   You could alternately implement the normalization as the cosine
   similarity (http://en.wikipedia.org/wiki/Cosine_similarity), but I
   don't do that since it would make the inner loop less efficient.
 
-I also keep track of a list of issues:
-    http://github.com/turian/flann/issues
+* KDtrees assumes that distance is non-decreasing as you accumulate
+over dimensions. However, dot distance is non-*INCREASING*. So I disabled
+branch pruning in KDtree.h (nonetheless KDtrees don't work).
+
+* KDtrees blow up with dot distance, so I disabled KDtrees in autotuning.
+
+I also keep track of a list of FLANN issues:
+    http://github.com/turian/flann-1.2/issues
+
+================
+
+See Marius Muja.html for more information about what is going on.
+
 
 ================
 

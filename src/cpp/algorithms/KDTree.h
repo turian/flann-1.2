@@ -487,10 +487,10 @@ private:
 	*/
 	void searchLevel(ResultSet& result, float* vec, Tree node, float mindistsq, int& checkCount, int maxCheck)
 	{
-		if (result.worstDist()<mindistsq) {
-//			printf("Ignoring branch, too far\n");
-			return;
-		}
+//		if (result.worstDist()<mindistsq) {
+// //			printf("Ignoring branch, too far\n");
+//			return;
+//		}
 
 		float val, diff;
 		Tree bestChild, otherChild;
@@ -528,7 +528,8 @@ private:
 
 		double new_distsq = flann_dist(&val, &val+1, &node->divval, mindistsq);
 //		if (2 * checkCount < maxCheck  ||  !result.full()) {
-		if (new_distsq < result.worstDist() ||  !result.full()) {
+//		if (new_distsq < result.worstDist() ||  !result.full()) {
+		if (!result.full()) {
 			heap->insert( BranchSt::make_branch(otherChild, new_distsq) );
 		}
 
@@ -541,9 +542,11 @@ private:
 	 */
 	void searchLevelExact(ResultSet& result, float* vec, Tree node, float mindistsq)
 	{
+/*
 		if (mindistsq>result.worstDist()) {
 			return;
 		}
+*/
 
 		float val, diff;
 		Tree bestChild, otherChild;

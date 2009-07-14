@@ -390,12 +390,14 @@ public:
             bestCost = kmeansCost.totalCost;
         }
 
+/*
         CostData kdtreeCost = optimizeKDTree();
 
         if (kdtreeCost.totalCost<bestCost) {
             bestParams = kdtreeCost.params;
             bestCost = kdtreeCost.totalCost;
         }
+    */
 
 
         // display best parameters
